@@ -1,0 +1,13 @@
+{
+  "name": "flowroutemessaginglib",
+  "version": "1.0.0",
+  "description": "Flowroute SMS Beta SDK",
+  "main": "./lib/index.js",
+  "scripts": {},
+  "keywords": [],
+  "author": "APIMATIC SDK Generator",
+  "dependencies": {
+    "request": "^2.55.0",
+    "string": "^3.1.1"
+  }
+}
