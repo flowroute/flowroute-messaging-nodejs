@@ -14,10 +14,10 @@ var cb =  function(err, response){
 };
 
 //Setup your msg variable
-var msg = {"to": "12066418000", "from": "12064205780", "content": "YOUR_MESSAGE_GOES_IN_HERE"};
+var msg = {"to": "E.164 To", "from": "E.164 From", "content": "YOUR_MESSAGE_GOES_IN_HERE"};
 
 //Execute the method
-//flowroute.MessagesController.createMessage(msg, cb);
+flowroute.MessagesController.createMessage(msg, cb);
 
 //Retrieve a MDR
 	//getMessageLookup : function(recordId, callback)
