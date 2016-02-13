@@ -2,8 +2,8 @@
 var flowroute = require('./flowroutemessaginglib');
 
 //Set your API credentials
-flowroute.configuration.username = "11656133";
-flowroute.configuration.password = "nVuomGMxHzvUWPXTZhdo52meUexBaGVM";
+flowroute.configuration.username = "USERNAME";
+flowroute.configuration.password = "PASSWORD";
 
 //Setup your callback function
 var cb =  function(err, response){
