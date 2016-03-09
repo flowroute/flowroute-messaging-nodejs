@@ -26,7 +26,7 @@ The following shows how to import the SDK and setup a basic callback function fo
         
 > Depending on where in your file system flowroutemessaginglib is, you may need to specify the full file path to flowroutemessaginglib.   
    
-2) Configure your API Username and Password from [Flowroute Manager](https://manage.flowroute.com/accounts/preferences/beta/).
+2) Configure your API Username and Password from [Flowroute Manager](https://manage.flowroute.com/accounts/preferences/api/).
  > If you do not have an API Key contact support@flowroute.com:
 
         flowroute.configuration.username = "AccessKey";
