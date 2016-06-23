@@ -97,7 +97,7 @@ When creating your own file for running the methods you will need to create one 
 
 	>**Note:** The callback variable name in this example, `cb`, can be any name of your own choosing, but whatever name you choose must be used consistently throughout the file.
 
-6.	Save the file wit a **.js** extension. For example, **sendmsg.js**.
+6.	Save the file with a **.js** extension. For example, **sendmsg.js**.
 
 7.	Add the Controllers and methods to the file. See [MessagesController](#msgcontroller)
 
