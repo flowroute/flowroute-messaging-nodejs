@@ -127,7 +127,7 @@ The following shows an example Node.js file before Controller methods have been 
 ## MessagesController<a name=msgcontroller></a>
 
 The MessagesController contains the functions required to send outbound SMS texts and to retrieve MDRs. 
-The following sections describe the use of the APIController and its two functions:
+The following sections describe the use of the APIController and the two methods it contains:
 
 *	[`createMessage `](#createmsg)
 
@@ -139,7 +139,7 @@ The `createMessage` method is used to send outbound messages from SMS-enabled Fl
 
 ####Usage
 
-Add the following two lines to the bottom of your JS file:
+Add the following two lines to the end of your Node.js file:
 
 	var msg = {"to": "To Number", "from": "From Number", "content": "Message Content"};
 	flowroute.MessagesController.createMessage(message variable name, callback variable name);
@@ -175,10 +175,10 @@ A successfully sent message returns a response that includes a message record id
 
 #### `getMessageLookup (recordId, callback)`<a name=getmsg></a>
 
-The getMessageLookup method is used to retrieve a MDR (message detail record) based on the message record identifier returned from createMessage.
+The `getMessageLookup` method is used to retrieve a MDR (message detail record) based on the message record identifier returned from createMessage.
 
 ####Usage
-Add the following line to the end of your JS file. If your file also contains the `createMessage` method, comment out those lines before running the `getMessageLookup` method. If the`getMessageLookup` lines are not commented out, a new message is sent. Alternately, you can create two separate files, one for creating messages and one for looking up an MDR.
+Add the following line to the end of your Node.js file. If your file also contains the `createMessage` method, comment out those lines before running the `getMessageLookup` method. If the`getMessageLookup` lines are not commented out, a new message is sent. Alternately, you can create two separate files, one for creating messages and one for looking up an MDR.
 
 	flowroute.MessagesController.getMessageLookup("recordID", callback)
 	
