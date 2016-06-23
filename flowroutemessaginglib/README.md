@@ -141,6 +141,7 @@ The `createMessage` method is used to send outbound messages from SMS-enabled Fl
 
 Add the following two lines to the end of your Node.js file:
 
+	#Create and send a message
 	var msg = {"to": "To Number", "from": "From Number", "content": "Message Content"};
 	flowroute.MessagesController.createMessage(message variable name, callback variable name);
 
@@ -156,6 +157,7 @@ It is composed of the following variables:
 
 ##### Example Usage
 
+	#Create and send a message
 	var msg = {"to": "12066418000", "from": "12064205780", "content": "That rug really tied the room together."};
 	flowroute.MessagesController.createMessage(msg, cb);
 	
@@ -180,6 +182,7 @@ The `getMessageLookup` method is used to retrieve an MDR from the message record
 ####Usage
 Add the following line to the end of your Node.js file. If your file also contains the `createMessage` method, comment out those lines before running the `getMessageLookup` method. If the`getMessageLookup` lines are not commented out, a new message is sent. Alternately, you can create two separate files, one for creating messages and one for looking up an MDR.
 
+	#Get the MDR
 	flowroute.MessagesController.getMessageLookup("recordID", callback)
 	
 | Parameter | Required | Type  | Description                                        |
