@@ -109,20 +109,20 @@ When creating your own file for running the methods you will need to create one 
 
 The following shows an example Node.js file before Controller methods have been added:
 
-		//Import the Messaging SDK
-		var flowroute = require('./flowroutemessaginglib');
-		
-		//Set your API credentials
-		flowroute.configuration.username = "1111111";
-		flowroute.configuration.password = "m8axLA45yds7kmi2225OQ7BshaADg6vr";
+	//Import the Messaging SDK
+	var flowroute = require('./flowroutemessaginglib');
 	
-		//Setup your callback function
-		var cb =  function(err, response){
-			if(err){
-				console.log(err);
-			}
-			console.log(response);
-		};
+	//Set your API credentials
+	flowroute.configuration.username = "1111111";
+	flowroute.configuration.password = "m8axLA45yds7kmi2225OQ7BshaADg6vr";
+	
+	//Set your callback function
+	var cb =  function(err, response){
+		if(err){
+			console.log(err);
+		}
+		console.log(response);
+	};
 
 ## MessagesController<a name=msgcontroller></a>
 
@@ -175,7 +175,7 @@ A successfully sent message returns a response that includes a message record id
 
 #### `getMessageLookup (recordId, callback)`<a name=getmsg></a>
 
-The `getMessageLookup` method is used to retrieve a MDR (message detail record) based on the message record identifier returned from createMessage.
+The `getMessageLookup` method is used to retrieve an MDR from the message record identifier returned using `createMessage`.
 
 ####Usage
 Add the following line to the end of your Node.js file. If your file also contains the `createMessage` method, comment out those lines before running the `getMessageLookup` method. If the`getMessageLookup` lines are not commented out, a new message is sent. Alternately, you can create two separate files, one for creating messages and one for looking up an MDR.
