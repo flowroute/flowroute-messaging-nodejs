@@ -24,6 +24,10 @@ You will need your Flowroute API credentials (Access Key and Secret Key). These 
 
 To create and send a message, you will need your Flowroute phone number, which should be enabled for SMS. If you do not know your phone number, or if you need to verify whether or not it is enabled for SMS, you can find it on the [DIDs](https://manage.flowroute.com/accounts/dids/) page of the Flowroute portal.
 
+### Get a code text editor
+
+Steps in this SDK describe creating one or more script files that allow you to execute the methods. Script files can be created either using a terminal window shell or through using a code text editor. For example, *Sublime Text*. 
+
 ###Download Node.js
 
 The flowroute-messaging-nodejs SDK requires Node.js. The installation file can be downloaded [here](https://nodejs.org/en/download/). Choose the installer that matches your operating system. Download the file, but do not install it.
@@ -60,7 +64,7 @@ The flowroute-messaging-nodejs SDK requires Node.js. The installation file can b
 	
 8.	After creating the libraries and installing Node.js, create a file that contains the flowroute-messaging-nodejs methods. This file can then be run from a command line.
   
-## Create a node.js file to set up the MessagesController
+## Create a Node.js file to set up the MessagesController
 
 Importing the SDK allows you to instantiate the [MessagesController](#msgcontroller), which contains the methods used to perform tasks with the SDK. In order to do this, create and run a Node.js file. 
 
@@ -91,9 +95,19 @@ When creating your own file for running the methods you will need to create one 
 			console.log(response);
 		};
 
-	>**Note:** The callback name can be any name of your own choosing, but whatever name you choose must be used consistently throughout the file.
+	>**Note:** The callback variable name in this example, `cb`, can be any name of your own choosing, but whatever name you choose must be used consistently throughout the file.
 
-	Your file should now resemble the following:
+6.	Save the file wit a **.js** extension. For example, **sendmsg.js**.
+
+7.	Add the Controllers and methods to the file. See [MessagesController](#msgcontroller)
+
+8.	After adding the MessageController methods, run the file to invoke the added methods:
+
+		node sendmsg.js
+
+###Example Node.js file
+
+The following shows an example Node.js file before Controller methods have been added:
 
 		//Import the Messaging SDK
 		var flowroute = require('./flowroutemessaginglib');
@@ -110,20 +124,13 @@ When creating your own file for running the methods you will need to create one 
 			console.log(response);
 		};
 
-6.	Save the file wit a **.js** extension. For example, **sendmsg.js**.
-
-7.	Add the Controllers and methods to the file. See [MessagesController](#msgcontroller)
-
-8.	After adding the MessageController methods, the file can be run from a terminal window as follows:
-
-		node createmsg.js
-
 ## MessagesController<a name=msgcontroller></a>
 
 The MessagesController contains the functions required to send outbound SMS texts and to retrieve MDRs. 
 The following sections describe the use of the APIController and its two functions:
 
 *	[`createMessage `](#createmsg)
+
 * 	[`get_message_lookup`](#getmsg) 
 
 ### `createMessage(message, callback)`<a name=createmsg></a>
@@ -135,17 +142,17 @@ The `createMessage` method is used to send outbound messages from SMS-enabled Fl
 Add the following two lines to the bottom of your JS file:
 
 	var msg = {"to": "To Number", "from": "From Number", "content": "Message Content"};
-	flowroute.MessagesController.createMessage(msg, cb);
+	flowroute.MessagesController.createMessage(message variable name, callback variable name);
 
 It is composed of the following variables:
 
 | Parameter | Required | Type |Usage   |                                                                             
 |-----------|----------|-------|--------------------------------------------------------|
-| `var` *`msg`*   | True     | string| The message variable name. The variable can have any name, and there is no limit on the length. The variable name created here must also be passed in `create_message()`.<br>For this method, `msg` is used.                                                                        |
-| `To Number `     | True     | string |Target phone number for the message. Must use an _1NPANXXXXXX_ E.164 format. | 
-|`From Number`|True|string| Source phone number. It must be a number registered with Flowroute, must be SMS-enabled, and must use an _1NPANXXXXXX_ E.164 format.|
+| `msg`*   | True     | string| The message variable name. The variable can have any name, and there is no limit on the length. The variable name created here must also be passed in `create_message()`.<br>For this method, `msg` is used.                                                                        |
+| `To Number `     | True     | string |Target phone number for the message. Must use an 11-digit _1NPANXXXXXX_ E.164 format. | 
+|`From Number`|True|string| Source phone number. It must be a number registered with Flowroute, must be SMS-enabled, and must use an 11-digit _1NPANXXXXXX_ E.164 format.|
 | `Message Content`| True   |string | The message itself. An unlimited number of characters can be used, but message length rules and encoding apply. See [Message Length & Concatenation](https://developer.flowroute.com/docs/message-length-concatenation) for more information. | 
-|`createMessage()`| True | string | This field contains the variable name and the callback function (`cb`), formatted as `createMessage(variable name, callback function)`|
+|`createMessage()`| True | string | This field contains the message variable name (`msg`) and the callback variable name (`cb`), formatted as `createMessage(message variable name, callback function)`. |
 
 ##### Example Usage
 
@@ -158,22 +165,32 @@ A successfully sent message returns a response that includes a message record id
 
 	{"data": {"id": "mdr1-d858379c1bee4dd3bfe5c556f7cef70f"}}
 
+##### Error response
+
+| Error code | Message | Description                                                 |
+|-------|----------|-------------------------------------------------------|
+|`401`   |UNAUTHORIZED|Authentication failed. The API credentials are incorrect.|
+|`403`  | FORBIDDEN  | The `from` number is not authorized.|
+|`500`| HTTP Response Not OK | Typically this occurs when the `to` phone number is not a complete 11-digit E.164-formatted number.|
+
 #### `getMessageLookup (recordId, callback)`<a name=getmsg></a>
 
 The getMessageLookup method is used to retrieve a MDR (message detail record) based on the message record identifier returned from createMessage.
 
 ####Usage
-Add the following line to the end of your JS file. If your file also contains the `createMessage` method, comment out those lines before running the `getMessageLookup` method. If the lines are not commented out, a new message is sent. Alternately, you can create two separate files, one for creating messages and one for looking up an MDR.
+Add the following line to the end of your JS file. If your file also contains the `createMessage` method, comment out those lines before running the `getMessageLookup` method. If the`getMessageLookup` lines are not commented out, a new message is sent. Alternately, you can create two separate files, one for creating messages and one for looking up an MDR.
 
-	flowroute.MessagesController.getMessageLookup("recordID", cb)
+	flowroute.MessagesController.getMessageLookup("recordID", callback)
 	
 | Parameter | Required | Type  | Description                                        |
 |-----------|----------|--------|-----------------------------------------------|
 | `recordID`      | True     | string  |The identifier of an existing record to retrieve. The value should include the`mdr1-`prefix. |
+| `callback`   | True  | string | Variable name of the callback function. The variable name should match the name assigned to the function when the callback function was added to the Node.js file. For this example, `cb` is the assigned variable name.|
 
 ##### Example Usage
 
-	flowroute.MessagesController.getMessageLookup("MDRid", cb);
+	#Get the MDR
+	flowroute.MessagesController.getMessageLookup("d858379c1bee4dd3bfe5c556f7cef70f", cb);
 
 #####Example response
 
@@ -210,7 +227,6 @@ Add the following line to the end of your JS file. If your file also contains th
                         
 
 #####Error response
-The following error can be returned:
 
 | Error code | Message | Description                                                 |
 |-------|----------|-------------------------------------------------------|
