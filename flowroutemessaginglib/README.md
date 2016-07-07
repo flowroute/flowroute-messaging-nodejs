@@ -129,13 +129,13 @@ The following shows an example Node.js file before Controller methods have been 
 The MessagesController contains the functions required to send outbound SMS texts and to retrieve MDRs. 
 The following sections describe the use of the APIController and the two methods it contains:
 
-*	[`createMessage `](#createmsg)
+*	[`create_message `](#createmsg)
 
 * 	[`get_message_lookup`](#getmsg) 
 
 ### `createMessage(message, callback)`<a name=createmsg></a>
 
-The `createMessage` method is used to send outbound messages from SMS-enabled Flowroute numbers.
+The `createMessage` method is invoked to create and send an outbound message from an SMS-enabled Flowroute number.
 
 ####Usage
 
@@ -149,7 +149,7 @@ It is composed of the following variables:
 
 | Parameter | Required | Type |Usage   |                                                                             
 |-----------|----------|-------|--------------------------------------------------------|
-| `msg`*   | True     | string| The message variable name. The variable can have any name, and there is no limit on the length. The variable name created here must also be passed in `create_message()`.<br>For this method, `msg` is used.                                                                        |
+| `msg`  | True     | string| The message variable name. The variable can have any name, and there is no limit on the length. The variable name created here must also be passed in `create_message()`.<br>For this method, `msg` is used.                                                                        |
 | `To Number `     | True     | string |Target phone number for the message. Must use an 11-digit _1NPANXXXXXX_ E.164 format. | 
 |`From Number`|True|string| Source phone number. It must be a number registered with Flowroute, must be SMS-enabled, and must use an 11-digit _1NPANXXXXXX_ E.164 format.|
 | `Message Content`| True   |string | The message itself. An unlimited number of characters can be used, but message length rules and encoding apply. See [Message Length & Concatenation](https://developer.flowroute.com/docs/message-length-concatenation) for more information. | 
