@@ -7,4 +7,4 @@
 **Note:** This SDK does not cover searching for a set of MDRs based on a date range. For searching on a date range, see [Look up a Set of Messages](https://developer.flowroute.com/api/messaging/look-up-set-of-messages/) on the Flowroute Developer Center.
 
 ### Documentation 
-To work with the SDK, please read and follow the steps in the [Flowroute Node.js Library v2](http://developer.flowroute.com/libraries/v2/nodejs/)
+To work with the SDK, please read and follow the steps in the [Flowroute Node.js Library v2](http://developer.flowroute.com/libraries/v2/nodejs/).
